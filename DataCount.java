@@ -31,7 +31,7 @@ public class DataCount<T extends Comparable<T>>{
     return "[" + data + "] - " + count;
   }
 
-  public Comparison_Handler<DataCount<T>> compare_by_data(boolean flag){
+  public Comparison_Handler<DataCount<T>> compare_by_data(SortOrder order){
     /**
      * flag = false -> descending
      * flag = true  -> ascending
@@ -41,12 +41,12 @@ public class DataCount<T extends Comparable<T>>{
       public int compare(DataCount<T> t1, DataCount<T> t2) {
         int cmpResult = t1.data.compareTo(t2.data);
 
-        return (flag)? cmpResult: cmpResult * -1;
+        return (order == SortOrder.DESCENDING)? cmpResult: cmpResult * -1;
       } // END compare METHOD
     };  // END return STATEMENT
   } // END compare_by_data
 
-  public Comparison_Handler<DataCount<T>> compare_by_count(boolean flag){
+  public Comparison_Handler<DataCount<T>> compare_by_count(SortOrder order){
     /**
      * flag = false -> descending
      * flag = true  -> ascending
@@ -56,7 +56,7 @@ public class DataCount<T extends Comparable<T>>{
       public int compare(DataCount<T> t1, DataCount<T> t2) {
         int cmpResult = ((Integer)t1.count).compareTo((Integer) t2.count);
 
-        return (flag)? cmpResult: cmpResult * -1;
+        return (order == SortOrder.DESCENDING)? cmpResult: cmpResult * -1;
       } // END compare METHOD
     }; // END return STATEMENT
   } // END compare_by_count METHOD
@@ -91,22 +91,22 @@ public class DataCount<T extends Comparable<T>>{
       System.out.println(dc);
     }
     System.out.println("============================");
-    is.sort(arr, arr.get(0).compare_by_count(false));
+    is.sort(arr, arr.get(0).compare_by_count(SortOrder.DESCENDING));
     for(DataCount<String> dc : arr){
       System.out.println(dc);
     }
     System.out.println("============================");
-    is.sort(arr, arr.get(0).compare_by_count(true));
+    is.sort(arr, arr.get(0).compare_by_count(SortOrder.ASCENDING));
     for(DataCount<String> dc : arr){
       System.out.println(dc);
     }
     System.out.println("============================");
-    is.sort(arr, arr.get(0).compare_by_data(false));
+    is.sort(arr, arr.get(0).compare_by_data(SortOrder.DESCENDING));
     for(DataCount<String> dc : arr){
       System.out.println(dc);
     }
     System.out.println("============================");
-    is.sort(arr, arr.get(0).compare_by_data(true));
+    is.sort(arr, arr.get(0).compare_by_data(SortOrder.ASCENDING));
     for(DataCount<String> dc : arr){
       System.out.println(dc);
     }
