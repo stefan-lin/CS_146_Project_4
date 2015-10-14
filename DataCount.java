@@ -32,6 +32,10 @@ public class DataCount<T extends Comparable<T>>{
   }
 
   public Comparison_Handler<DataCount<T>> compare_by_data(boolean flag){
+    /**
+     * flag = false -> descending
+     * flag = true  -> ascending
+     */
     return new Comparison_Handler<DataCount<T>>() {
       @Override
       public int compare(DataCount<T> t1, DataCount<T> t2) {
@@ -43,6 +47,10 @@ public class DataCount<T extends Comparable<T>>{
   } // END compare_by_data
 
   public Comparison_Handler<DataCount<T>> compare_by_count(boolean flag){
+    /**
+     * flag = false -> descending
+     * flag = true  -> ascending
+     */
     return new Comparison_Handler<DataCount<T>>() {
       @Override
       public int compare(DataCount<T> t1, DataCount<T> t2) {
