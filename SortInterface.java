@@ -5,4 +5,5 @@ import java.util.List;
  */
 public interface SortInterface<E> {
   public void sort(List<E> list, Comparison_Handler<E> cmph);
+  public void sort(E[] arr, Comparison_Handler<E> cmph);
 }
