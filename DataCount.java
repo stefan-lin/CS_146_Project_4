@@ -69,52 +69,7 @@ public class DataCount<T extends Comparable<T>>{
     } // END FOR LOOP
   } // END dummysort METHOD
 
-  //public static void main(String[] args) {
-  //  DataCount<String> arr []= new DataCount[5];
-//
-  //  arr[0] = new DataCount<>("Z", 4);
-  //  arr[1] = new DataCount<>("H", 3);
-  //  arr[2] = new DataCount<>("B", 5);
-  //  arr[3] = new DataCount<>("T", 1);
-  //  arr[4] = new DataCount<>("K", 2);
-//
-  //  for(DataCount<String> i : arr){
-  //    System.out.println(i);
-  //  }
-  //  System.out.println("-----------------");
-//
-  //  dummySort(arr, arr[0].compare_by_data(true));
-//
-  //  for(DataCount<String> i : arr){
-  //    System.out.println(i);
-  //  }
-  //  System.out.println("============================");
-//
-  //  dummySort(arr, arr[0].compare_by_data(false));
-//
-  //  for(DataCount<String> i : arr){
-  //    System.out.println(i);
-  //  }
-  //  System.out.println();
-//
-  //  System.out.println("-----------------");
-//
-  //  // counter comparison
-  //  dummySort(arr, arr[0].compare_by_count(true));
-//
-  //  for(DataCount<String> i : arr){
-  //    System.out.println(i);
-  //  }
-  //  System.out.println("============================");
-//
-  //  dummySort(arr, arr[0].compare_by_count(false));
-//
-  //  for(DataCount<String> i : arr){
-  //    System.out.println(i);
-  //  }
-  //  System.out.println();
-  //}
-
+  /////////////////// TESTING /////////////////////////////////////////////////
   public static void main(String[] args) {
     InsertionSort<DataCount<String>> is = new InsertionSort<>();
     ArrayList<DataCount<String>> arr = new ArrayList<>();
@@ -151,3 +106,41 @@ public class DataCount<T extends Comparable<T>>{
 
   } // END MAIN METHOD
 }
+
+/**
+ OUTPUT
+ "C:\Program Files\Java\jdk1.8.0_60\bin\java" -Didea.launcher.port=7535 "-Didea.launcher.bin.path=C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 14.1.4\bin" -Dfile.encoding=windows-1252 -classpath "C:\Program Files\Java\jdk1.8.0_60\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\zipfs.jar;C:\Users\Lambda\IdeaProjects\Project_3_New\out\production\Project_3_New;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 14.1.4\lib\idea_rt.jar" com.intellij.rt.execution.application.AppMain DataCount
+ [Z] - 4
+ [H] - 3
+ [B] - 5
+ [T] - 1
+ [K] - 2
+ ============================
+ [T] - 1
+ [K] - 2
+ [H] - 3
+ [Z] - 4
+ [B] - 5
+ ============================
+ [B] - 5
+ [Z] - 4
+ [H] - 3
+ [K] - 2
+ [T] - 1
+ ============================
+ [B] - 5
+ [H] - 3
+ [K] - 2
+ [T] - 1
+ [Z] - 4
+ ============================
+ [Z] - 4
+ [T] - 1
+ [K] - 2
+ [H] - 3
+ [B] - 5
+ ============================
+
+ Process finished with exit code 0
+
+ */
