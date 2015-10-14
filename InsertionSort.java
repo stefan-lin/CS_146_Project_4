@@ -9,14 +9,24 @@ public class InsertionSort<T> implements SortInterface<T> {
   public void sort(List<T> list, Comparison_Handler<T> cmph) {
     for(int index = 1; index < list.size(); index++){
       int tmp_idx = index;
-      int rslt = cmph.compare(list.get(tmp_idx), list.get(tmp_idx - 1));
-      while(tmp_idx > 0 && rslt > 0){
+      while(tmp_idx > 0 &&
+          cmph.compare(list.get(tmp_idx), list.get(tmp_idx - 1)) > 0){
         Collections.swap(list, tmp_idx, tmp_idx-1);
         tmp_idx--;
-        if(tmp_idx != 0) {
-          rslt = cmph.compare(list.get(tmp_idx), list.get(tmp_idx - 1));
-        }
       } // END WHILE LOOP
     } // END FOR LOOP
   } // END sort METHOD
+
+  @Override
+  public void sort(T[] arr, Comparison_Handler<T> cmph) {
+    for(int index = 1; index < arr.length; index++){
+      int tmp_idx = index;
+      while(tmp_idx > 0 && cmph.compare(arr[tmp_idx], arr[tmp_idx - 1]) > 0){
+        T tmp_item = arr[tmp_idx];
+        arr[tmp_idx] = arr[tmp_idx - 1];
+        arr[tmp_idx - 1] = tmp_item;
+        tmp_idx--;
+      } // END WHILE LOOP
+    } // END FOR LOOP
+  }
 }
