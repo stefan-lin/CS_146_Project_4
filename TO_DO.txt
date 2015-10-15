@@ -1,0 +1,2 @@
+1. something wrong with merge sort (DataCount Comparator)
+   - use compare_by_count but turns out compare by data
