@@ -1,7 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.List;
 
-public class QuickSort<E> implements SortInterface<E>{
+public class QuickSort<E>{
   //variables
   private E [] tmp_Arr = null;
   Comparison_Handler<E> cmph = null;
@@ -68,12 +68,6 @@ public <E> void _quicksort(E[] tmp_Arr, Comparison_Handler<E> cmph, int lowerTha
 @Override
 public void sort(List<E> list, Comparison_Handler<E> cmph) {
 	
-	
-}
-
-@Override
-public void sort(E[] arr, Comparison_Handler<E> cmph) {
-	// TODO Auto-generated method stub
 	
 }
 }
