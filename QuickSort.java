@@ -6,12 +6,13 @@ public class QuickSort<E> implements SortInterface<E>{
   private E [] tmp_Arr = null;
   Comparison_Handler<E> cmph = null;
     
-  public <E> void _quicksort(E[] tmp_Arr, <E> cmph, int lowerThanPivot, int higherThanPivot){
+  @SuppressWarnings("hiding")
+public <E> void _quicksort(E[] tmp_Arr, Comparison_Handler<E> cmph, int lowerThanPivot, int higherThanPivot){
     if(higherThanPivot - lowerThanPivot > 1) {   
       int partitionPivot = chop(tmp_Arr, cmph, lowerThanPivot, higherThanPivot);
-        quickSort(tmp_Arr, cmph, lowerThanPivot, partitionPivot);
+        _quicksort(tmp_Arr, cmph, lowerThanPivot, partitionPivot);
     	//quickSort(tmp_Arr, cmph, partitionPivot - 1, higherThanPivot);
-        quickSort(tmp_Arr, cmph, partitionPivot + 1, higherThanPivot);
+        _quicksort(tmp_Arr, cmph, partitionPivot + 1, higherThanPivot); }
   }
   
   /**
@@ -22,15 +23,13 @@ public class QuickSort<E> implements SortInterface<E>{
     if (tmp_Arr == null || tmp_Arr.length == 0) {
       return;
     }
-    this.array = tmp_Arr;
-    _quickSort(0, length - 1);
   }
       
   /**
   * Method to partition
   * @return new pivot
   */
-  public <E> void chop(E[] tmp_Arr, <E> cmph, int lowerThanPivot, int higherThanPivot){
+  public <E> int chop(E[] tmp_Arr, Comparison_Handler<E> cmph, int lowerThanPivot, int higherThanPivot){
       int pivot = (lowerThanPivot + higherThanPivot)/2;
       int toLeftofPivot = lowerThanPivot;
       int toRightofPivot = higherThanPivot;
@@ -38,17 +37,17 @@ public class QuickSort<E> implements SortInterface<E>{
       //Identify number from left side > the pivot value && a number from right side < pivot value
       //Then swap.
       while (lowerThanPivot < higherThanPivot) {
-		if (comparator.compare(array[toRightofPivot],pivot) > 0) {
+		if (cmph.compare(tmp_Arr[toRightofPivot],pivot) > 0) {
 				toRightofPivot--;
 		}
         //move to the right if the pivot is 
-		else if (cmph.compare(array[toLeftofPivot],pivot) <= 0) {
+		else if (cmph.compare(tmp_Arr[toLeftofPivot],pivot) <= 0) {
           toLeftofPivot++;
         } 
         else {
           E swap = tmp_Arr[toLeftofPivot];
           tmp_Arr[toLeftofPivot] = tmp_Arr[toRightofPivot];
-		  tmp_Arr[right] = swap;
+		  tmp_Arr[toRightofPivot] = swap;
         }
       }
       tmp_Arr[lowerThanPivot] = tmp_Arr[toLeftofPivot];
@@ -65,3 +64,16 @@ public class QuickSort<E> implements SortInterface<E>{
 	array[pivot] = temp;  
     }
     */
+
+@Override
+public void sort(List<E> list, Comparison_Handler<E> cmph) {
+	
+	
+}
+
+@Override
+public void sort(E[] arr, Comparison_Handler<E> cmph) {
+	// TODO Auto-generated method stub
+	
+}
+}
