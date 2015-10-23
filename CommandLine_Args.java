@@ -10,13 +10,31 @@ public class CommandLine_Args {
   static final String OPTIONS_OPT[] = {"-frequency", "-num_unique"};
   static final String OPTIONS_SRT[] = {"-is", "-qs", "-ms"};
 
+  /**
+   * Executing_Commands CLASS
+   *
+   * THIS CLASS IS VERY IMPORTANT TO THE WHOLE SYSTEM. IT WOULD TAKE THE INPUT
+   * FROM COMMAND LINE ARGUMENTS AND ACCORDING TO THE INPUT IT WOULD GENERATE
+   * THE REQUESTING OBJECTS(SortObject, DataStructure, ... etc). THIS PROVIDES
+   * THE CONVENIENCE FOR THE OTHER PARTS OF THE SYSTEM.
+   */
   public class Executing_Commands{
     private Data_Structure data_structure;
     private Option         option;
     private Sort_Algorithm sort_algorithm;
     private String         file;
 
-    Executing_Commands(
+    /**
+     * Executing_Commands CONSTRUCTOR
+     *
+     * CONSTRUCTING THE Executing_Commands OBJECT
+     *
+     * @param ds   INDICATES THE REQUESTING DATA STRUCTURE
+     * @param opt  INDICATES THE REQUESTING OPTION
+     * @param sa   INDICATES THE REQUESTING SORTING ALGORITHM
+     * @param file INDICATES THE INPUT FILE
+     */
+    public Executing_Commands(
             Data_Structure ds, Option opt,
             Sort_Algorithm sa, String file){
       data_structure = ds;
@@ -25,14 +43,35 @@ public class CommandLine_Args {
       this.file      = file;
     }
 
+    /**
+     * getInputFile METHOD
+     *
+     * GETTER METHOD
+     *
+     * @return FILE OBJECT
+     */
     public File getInputFile(){
       return new File(this.file);
     }
 
+    /**
+     * getOutputOption METHOD
+     *
+     * SIMPLE GETTER METHOD
+     *
+     * @return BOOLEAN VALUE: TRUE-> SHOW FREQUENCY; FALSE-> SHOW UNIQUE
+     */
     public boolean getOutputOption(){
       return (option == Option.FREQUENCY)? true: false;
     }
 
+    /**
+     * getSortObject METHOD
+     *
+     * GENERATING THE REQUESTING SORTING OBJECT
+     *
+     * @return SortInterface INSTANCE
+     */
     public SortInterface<DataCount<String>> getSortObject(){
       switch(sort_algorithm){
         case INSERTION_SORT:
@@ -46,6 +85,13 @@ public class CommandLine_Args {
       } // END SWITCH STATEMENT
     } // END getSortObject METHOD
 
+    /**
+     * getDataStructure METHOD
+     *
+     * GENERATE THE REQUESTING DATA STRUCTURE OBJECT
+     *
+     * @return DataCounter OBJECT
+     */
     public DataCounter<String> getDataStructure(){
       switch(data_structure){
         case AVL:
@@ -60,6 +106,11 @@ public class CommandLine_Args {
     } // END getDataStructure METHOD
   } // END Executing_Command CLASS
 
+  /**
+   * showUsage METHOD
+   *
+   * SHOWING THE INVALID USAGE MESSAGE
+   */
   static public void showUsage(){
     System.err.println(
             "Usage: java WordCount [ -b | -a | -h ]" +
@@ -77,6 +128,14 @@ public class CommandLine_Args {
     System.err.println("filename Input file name");
   } // END showUsage METHOD
 
+  /**
+   * parse_DataStructure_option METHOD
+   *
+   * HELPER METHOD TO GENERATE THE REQUESTING Data_Structure OPTION
+   *
+   * @param str INPUT STRING
+   * @return Data_Structure OPTION
+   */
   static private Data_Structure parse_DataStructure_option(String str){
     int index;
     for(index = 0; index < OPTIONS_ALG.length; index++){
@@ -97,6 +156,14 @@ public class CommandLine_Args {
     } // END SWITCH STATEMENT
   }
 
+  /**
+   * parse_SortAlgorithm_option METHOD
+   *
+   * HELPER METHOD TO GENERATE THE REQUESTING Sort_Algorithm OPTION
+   *
+   * @param str INPUT STRING
+   * @return Sort_Algorithm OPTION
+   */
   static private Sort_Algorithm parse_SortAlgorithm_option(String str){
     int index;
     for(index = 0; index < OPTIONS_SRT.length; index++){
@@ -117,6 +184,14 @@ public class CommandLine_Args {
     } // END SWITCH STATEMENT
   }
 
+  /**
+   * parse_Option_option METHOD
+   *
+   * GENERATING THE REQUESTING Option
+   *
+   * @param str INPUT STRING
+   * @return  Option
+   */
   static private Option parse_Option_option(String str){
     if(str.compareTo(OPTIONS_OPT[0]) == 0){
       return Option.FREQUENCY;
@@ -131,6 +206,16 @@ public class CommandLine_Args {
   }
 
 
+  /**
+   * parse_cmd_arges METHOD
+   *
+   * THIS METHOD WOULD GENERATE THE Executing_Commands OBJECT BASED ON THE
+   * INPUT ARGUMENTS
+   *
+   * @param args INPUT ARGUMENT ARRAY
+   * @return     Executing_Commands OBJECT
+   * @throws Exception
+   */
   public Executing_Commands parse_cmd_args(String[] args) throws Exception{
     // VALIDATE THE NUMBER OF THE ARGUMENTS ///////////////////////////////////
     if(args.length != 4){
@@ -144,49 +229,4 @@ public class CommandLine_Args {
         args[3]
     );
   }
-
-  /////////////////////// TESTING /////////////////////////////////////////
-  public static void main(String[] args) {
-    String arr [] = new String [4];
-    arr[0] = "-a";
-    arr[1] = "-is";
-    arr[2] = "-frequency";
-    arr[3] = "hamlet.txt";
-    int num_of_entry = 0;
-    try {
-      Executing_Commands ec = new CommandLine_Args().parse_cmd_args(arr);
-      //System.out.println(ec.getDataStructure().toString());
-      //System.out.println(ec.getSortObject().toString());
-      //System.out.println(ec.getOutputOption());
-      //System.out.println(ec.getInputFile());
-
-      DataCounter<String> dataStructure = ec.getDataStructure();
-      FileWordReader reader = new FileWordReader(
-          ec.getInputFile().getAbsolutePath());
-      String word = reader.nextWord();
-      while (word != null) {
-        dataStructure.incCount(word);
-        word = reader.nextWord();
-        num_of_entry++;
-      } // END WHILE LOOP
-      DataCount<String>[] counts = dataStructure.getCounts();
-      ec.getSortObject().sort(
-          counts, counts[0].compare_by_count(SortOrder.ASCENDING)
-      );
-      for(DataCount dc : counts){
-        System.out.println(dc);
-      }
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-      System.err.println("Error processing " + e);
-      System.exit(1);
-    }
-  }
 }
-
-/**
-public enum ExecuteFile{
-
-}
- */

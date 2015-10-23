@@ -1,0 +1,15 @@
+[       File Name        ] : hamlet.txt
+[       Algorithm        ] : Insertion Sort
+[Total Number of Entries ] : 4851
+[      Elapsed Time      ] : 71790277 ns
+================================================
+[       File Name        ] : hamlet.txt
+[       Algorithm        ] : Quick Sort
+[Total Number of Entries ] : 4851
+[      Elapsed Time      ] : 126915320 ns
+================================================
+[       File Name        ] : hamlet.txt
+[       Algorithm        ] : Merge Sort
+[Total Number of Entries ] : 4851
+[      Elapsed Time      ] : 3346778 ns
+================================================

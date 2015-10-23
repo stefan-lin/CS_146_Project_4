@@ -6,7 +6,19 @@ public class QuickSort<E> implements SortInterface<E>{
   //variables
   //private E [] tmp_Arr = null;
   Comparison_Handler<E> cmph = null;
-    
+
+  /**
+   * _quicksort METHOD
+   *
+   * QUICK SORT HELPER METHOD. THIS METHOD WOULD FIRST CHECK IF THE ARRAY SIZE
+   * IS LESS THAN OR EQUALS TO FOUR. IF IT IS, THEN USE INSERTION SORT TO
+   * PROVIDE EXTRA PERFORMANCE. IF NOT, SPLIT ARRAY INTO TWO PARTITION AND
+   * RECURSIVELY CALL _quicksort AGAIN.
+   *
+   * @param tmp_Arr         INPUT ARRAY THAT WOULD BE SORTED
+   * @param lowerThanPivot  BEGINNING INDEX
+   * @param higherThanPivot ENDING INDEX
+   */
   @SuppressWarnings("hiding")
   public void _quicksort(E[] tmp_Arr, int lowerThanPivot, int higherThanPivot){
     if(higherThanPivot - lowerThanPivot <= 9){
@@ -18,7 +30,6 @@ public class QuickSort<E> implements SortInterface<E>{
       int partitionPivot = chop(tmp_Arr, lowerThanPivot, higherThanPivot);
 
       _quicksort(tmp_Arr, lowerThanPivot, partitionPivot);
-    	//quickSort(tmp_Arr, cmph, partitionPivot - 1, higherThanPivot);
       _quicksort(tmp_Arr, partitionPivot + 1, higherThanPivot);
     } // END IF STATEMENT
     else{
@@ -60,10 +71,13 @@ public class QuickSort<E> implements SortInterface<E>{
   }
 
   /**
+   * _swap METHOD
    *
-   * @param tmp_Arr
-   * @param idx1
-   * @param idx2
+   * A HELPER METHOD THAT SWAP ELEMENTS IN THE ARRAY
+   *
+   * @param tmp_Arr TARGET ARRAY
+   * @param idx1    ELEMENT ONE INDEX
+   * @param idx2    ELEMENT TWO INDEX
    */
   private void _swap(E[] tmp_Arr, int idx1, int idx2){
     E tmp = tmp_Arr[idx1];
@@ -72,9 +86,19 @@ public class QuickSort<E> implements SortInterface<E>{
   }
 
   /**
-  * Method to partition
-  * @return new pivot
-  */
+   * chop METHOD
+   *
+   * THE METHOD THAT ACTUALLY SORTS THE ARRAY. FIRST FIND THE PIVOT AND THEN
+   * SWAP THE PIVOT ELEMENT TO THE BEGINNING OF ARRAY AND THEN, MOVE THE
+   * ELEMENTS WHICH IS LESS THAN PIVOT TO THE LEFT AND THE ELEMENTS WHICH IS
+   * GREATER THAN PIVOT TO THE RIGHT. SWAP THE PIVOT WITH THE GREATEST ELEMENT
+   * THAT NEAR THE PIVOT AND RETURN THE PIVOT INDEX AT THE END.
+   *
+   * @param tmp_Arr         TARGET ARRAY
+   * @param lowerThanPivot  THE BEGINNING INDEX OF ARRAY
+   * @param higherThanPivot THE ENDING INDEX OF ARRAY
+   * @return PIVOT INDEX
+   */
   public int chop(E[] tmp_Arr, int lowerThanPivot, int higherThanPivot){
     int pivot = _find_median(tmp_Arr, lowerThanPivot, higherThanPivot);
     int toLeftofPivot = lowerThanPivot + 1;
@@ -100,17 +124,21 @@ public class QuickSort<E> implements SortInterface<E>{
     _swap(tmp_Arr, toLeftofPivot, lowerThanPivot);
 	  return toLeftofPivot;
   }
-      
-  /**
-  *Method to swap index when comparing
-  *
-  private void swap(int pivot, int low) {
-    E temp = array[low];
-    array[low] = wherePivot;
-	array[pivot] = temp;  
-    }
-    */
 
+  /**
+   * sort Public method (Override based on the interface SortInterface)
+   * This public method works as the API for user. Also, as soon as, this method
+   * is called, it will starts to execute the preparation for the following
+   * merge sort process.
+   *  - Dynamically allocate a array which has the same size of the input one.
+   *  - Assign Comparison_Handler instance to its own private field for later
+   *    usage. In this way, we could eliminate the number of parameters needed
+   *    for sorting methods.
+   *  - After the sorting process is done. De-allocated the memory.
+   *
+   * @param arr  Target array that would be sorted
+   * @param cmph Comparison_Handler instance that would provide compare method
+   */
   @Override
   public void sort(E[] arr, Comparison_Handler<E> cmph) {
     if (arr == null || arr.length == 0) {

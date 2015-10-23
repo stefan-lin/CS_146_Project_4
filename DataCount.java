@@ -8,24 +8,54 @@ public class DataCount<T extends Comparable<T>>{
   private T   data  = null;
   private int count = 0;
 
+  /**
+   * DataCount CONSTRUCTOR
+   *
+   * CONSTRUCT THE DataCount OBJECT
+   *
+   * @param data_in  INPUT DATA
+   * @param count_in DATA COUNT
+   */
   public DataCount(T data_in, int count_in){
     this.data  = data_in;
     this.count = count_in;
   } // END CONSTRUCTOR
 
+  /**
+   * SIMPLE GETTER METHOD
+   *
+   * @return DATA
+   */
   public T getData(){
     return this.data;
   }
 
+  /**
+   * SIMPLE GETTER METHOD
+   *
+   * @return NUMBER OF COUNTS
+   */
   public int getCount(){
     return this.count;
   }
 
+  /**
+   * COPY METHOD
+   *
+   * COPYING BETWEEN TWO DataCount OBJECTS (DEEP COPY)
+   *
+   * @param new_obj
+   */
   public void copy(DataCount<T> new_obj){
     this.data = new_obj.data;
     this.count = new_obj.count;
   }
 
+  /**
+   * OVERRIDE toString METHOD
+   *
+   * @return STRING INDICATES DataCount OBJECT
+   */
   @Override
   public String toString(){
     return count + " \t" + data;

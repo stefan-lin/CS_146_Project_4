@@ -17,6 +17,20 @@ public class InsertionSort<T> implements SortInterface<T> {
   //  } // END FOR LOOP
   //} // END sort METHOD
 
+  /**
+   * sort Public method (Override based on the interface SortInterface)
+   * This public method works as the API for user. Also, as soon as, this method
+   * is called, it will starts to execute the preparation for the following
+   * merge sort process.
+   *  - Dynamically allocate a array which has the same size of the input one.
+   *  - Assign Comparison_Handler instance to its own private field for later
+   *    usage. In this way, we could eliminate the number of parameters needed
+   *    for sorting methods.
+   *  - After the sorting process is done. De-allocated the memory.
+   *
+   * @param arr  Target array that would be sorted
+   * @param cmph Comparison_Handler instance that would provide compare method
+   */
   @Override
   public void sort(T[] arr, Comparison_Handler<T> cmph) {
     for(int index = 1; index < arr.length; index++){

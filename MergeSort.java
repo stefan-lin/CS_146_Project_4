@@ -109,8 +109,8 @@ public class MergeSort<E> implements SortInterface<E> {
    *    for sorting methods.
    *  - After the sorting process is done. De-allocated the memory.
    *
-   * @param arr
-   * @param cmph
+   * @param arr  Target array that would be sorted
+   * @param cmph Comparison_Handler instance that would provide compare method
    */
   @Override
   public void sort(E[] arr, Comparison_Handler<E> cmph) {

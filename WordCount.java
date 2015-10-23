@@ -16,6 +16,11 @@ public class WordCount {
   DataCount<String> []      _original_arr   = null;
   FileWriter                _output_handler = null;
 
+  /**
+   * WordCount CONSTRUCTOR
+   *
+   * INITIALIZE THE FileWriter OBJECT FOR LATER USE
+   */
   public WordCount(){
     // PREPARE FOR OUTPUT HANDLER
     try {
@@ -29,6 +34,21 @@ public class WordCount {
       e.printStackTrace();
     }
   }
+
+  /**
+   * _parse_cmd_args METHOD
+   *
+   * THIS METHOD IS THE MAJOR METHOD IN THIS PROJECT. IT IS RESPONSIBLE TO:
+   *  (1) CALLING CommandLine_Args CLASS TO PARSE COMMAND LINE ARGUMENTS
+   *  (2) READING INPUT FILE BY CALLING THE FileWordReader CLASS OBJECT
+   *  (3) PROCESSING THE DATA BY USER REQUESTING DATA STRUCTURE
+   *  (4) SORT THE OUTPUT ARRAY BY REQUESTING SORT ALGORITHM
+   *  (5) PRINT OUTPUT TO STANDARD OUTPUT
+   *  (6) CALL HELPER METHOD TO MEASURE THE EFFICIENCY OF SORTING ALGORITHM
+   *
+   * @param args COMMAND LINE ARGUMENTS
+   * @throws IOException
+   */
   private void _parse_cmd_args(String [] args) throws IOException {
     DataCounter<String> dataStructure = null;
     try {
@@ -73,6 +93,16 @@ public class WordCount {
     }
   }
 
+  /**
+   * measure_sort_efficiency METHOD
+   *
+   * DEEP COPY THE ORIGINAL ARRAY AND USING DIFFERENT SORTING ALGORITHMS TO
+   * SORT THE ARRAYS AND MEASURE THE ELAPSED TIME. CALL HELPER METHOD TO PRINT
+   * OUT THE REPORT
+   *
+   * @param f_name INPUT FILE NAME (STRING)
+   * @throws IOException
+   */
   private void measure_sort_efficiency(String f_name) throws IOException {
     DataCount<String> [] mani_arr = Arrays.copyOf(
         _original_arr, _original_arr.length);
@@ -107,6 +137,17 @@ public class WordCount {
     this.close_output_file();
   }
 
+  /**
+   * print_efficiency_report METHOD
+   *
+   * THE HELPER METHOD TO PRINT OUT REPORT TO A TEXT FILE.
+   *
+   * @param t           ELAPSED TIME
+   * @param algorithm   THE NAME OF SORTING ALGORITHM
+   * @param f_name      THE NAME OF THE INPUT FILE
+   * @param ttl_srt_num TOTAL NUMBER OF ENTRIES
+   * @throws IOException
+   */
   private void print_efficiency_report(long t, String algorithm, String f_name,
                                        int ttl_srt_num) throws IOException {
     _output_handler.write("[       File Name        ] : " + f_name + "\n");
@@ -116,11 +157,24 @@ public class WordCount {
     _output_handler.write("================================================\n");
   }
 
+  /**
+   * close_output_file METHOD
+   *
+   * HELPER METHOD TO CLOSE THE OUTPUT FILE HANDLER
+   *
+   * @throws IOException
+   */
   private void close_output_file() throws IOException {
     _output_handler.flush();
     _output_handler.close();
   }
 
+  /**
+   * MAIN METHOD
+   *
+   * @param args COMMAND LINE ARGUMENTS
+   * @throws IOException
+   */
   public static void main(String[] args) throws IOException {
     WordCount wc = new WordCount();
     wc._parse_cmd_args(args);
