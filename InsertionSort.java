@@ -29,4 +29,16 @@ public class InsertionSort<T> implements SortInterface<T> {
       } // END WHILE LOOP
     } // END FOR LOOP
   }
+
+  /**
+   * Public toString Method
+   *
+   * Override the toString method.
+   *
+   * @return A string represent Insertion Sort
+   */
+  @Override
+  public String toString(){
+    return "Insertion Sort";
+  }
 }

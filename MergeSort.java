@@ -122,12 +122,15 @@ public class MergeSort<E> implements SortInterface<E> {
     this.cmph = null;
   }
 
-  //@Override
-  //public void sort(List<E> list, Comparison_Handler<E> cmph) {
-
-  //}
-
-  //private void _sort(List<E> list, int idx_fnt, int idx_bck){
-
-  //}
+  /**
+   * Public toString Method
+   *
+   * Override the toString method.
+   *
+   * @return A string represent Merge Sort
+   */
+  @Override
+  public String toString(){
+    return "Merge Sort";
+  }
 }
