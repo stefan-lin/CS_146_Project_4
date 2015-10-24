@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -76,6 +77,7 @@ public class MergeSort<E> implements SortInterface<E> {
    * @param idx_bck The index of the ending position
    */
   private void _merge(E[] arr, int idx_fnt, int idx_mid, int idx_bck){
+    //System.arraycopy(arr, idx_fnt, tmp_arr, idx_fnt, idx_bck-idx_fnt+1);
     // FIRST MAKE A DEEP COPY OF INPUT ARRAY TO TEMP ARRAY
     for(int i=idx_fnt; i<=idx_bck; i++){
       this.tmp_arr[i] = arr[i];

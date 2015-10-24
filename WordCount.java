@@ -134,6 +134,8 @@ public class WordCount {
     totalTime = System.nanoTime() - startTime;
     print_efficiency_report(totalTime, ms.toString(), f_name, mani_arr.length);
 
+    _output_handler.write("\n*****************************************\n\n");
+
     this.close_output_file();
   }
 

@@ -6,6 +6,11 @@ public class QuickSort<E> implements SortInterface<E>{
   //variables
   //private E [] tmp_Arr = null;
   Comparison_Handler<E> cmph = null;
+  InsertionSort<E> _insertion_sort = null;
+
+  public QuickSort(){
+    _insertion_sort = new InsertionSort<>();
+  }
 
   /**
    * _quicksort METHOD
@@ -22,7 +27,8 @@ public class QuickSort<E> implements SortInterface<E>{
   @SuppressWarnings("hiding")
   public void _quicksort(E[] tmp_Arr, int lowerThanPivot, int higherThanPivot){
     if(higherThanPivot - lowerThanPivot <= 9){
-      new InsertionSort<E>().sort(tmp_Arr, this.cmph);
+      _insertion_sort.partial_sort(tmp_Arr, lowerThanPivot,
+          higherThanPivot, this.cmph);
       return;
     }
     // DEALING WITH INDEX

@@ -44,6 +44,18 @@ public class InsertionSort<T> implements SortInterface<T> {
     } // END FOR LOOP
   }
 
+  public void partial_sort(T[] arr, int begin,
+                           int end, Comparison_Handler<T> cmph){
+    for(int index = begin; index <= end; index++){
+      int tmp_idx = index;
+      while(tmp_idx > 0 && cmph.compare(arr[tmp_idx], arr[tmp_idx - 1]) < 0){
+        T tmp_item = arr[tmp_idx];
+        arr[tmp_idx] = arr[tmp_idx - 1];
+        arr[tmp_idx - 1] = tmp_item;
+        tmp_idx--;
+      } // END WHILE LOOP
+    } // END FOR LOOP
+  }
   /**
    * Public toString Method
    *
