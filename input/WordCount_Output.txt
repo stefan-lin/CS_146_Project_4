@@ -1,0 +1,30 @@
+[       File Name        ] : C:\Users\Lambda\IdeaProjects\AVL_Project3\src\test_3.txt
+[       Algorithm        ] : AVL Tree
+[Total Number of Entries ] : 232097
+[Total Number of Elements] : 13546
+==================================================
+Insert Time  : 158063525
+Extract Time : 1906068
+Total Time   : 159969593
+==================================================
+
+[       File Name        ] : C:\Users\Lambda\IdeaProjects\AVL_Project3\src\test_3.txt
+[       Algorithm        ] : Binary Search Tree
+[Total Number of Entries ] : 232097
+[Total Number of Elements] : 13546
+==================================================
+Insert Time  : 155337841
+Extract Time : 1679930
+Total Time   : 157017771
+==================================================
+
+[       File Name        ] : C:\Users\Lambda\IdeaProjects\AVL_Project3\src\test_3.txt
+[       Algorithm        ] : Hash Table
+[Total Number of Entries ] : 232097
+[Total Number of Elements] : 13546
+==================================================
+Insert Time  : 152310993
+Extract Time : 4284938
+Total Time   : 156595931
+==================================================
+
