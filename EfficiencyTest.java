@@ -66,7 +66,9 @@ public class EfficiencyTest {
   private void _run_input_preparation() throws IOException{
     int counter = 1;
     for(File inputFile : _input_files){
+      //DataCounter<String> dataStructure0 = new BSL<>();
       DataCounter<String> dataStructure = new AVL<>();
+      //DataCounter<String> dataStructure = new HashTable<>();
       FileWordReader file_reader = new FileWordReader(
           inputFile.getAbsolutePath());
       // READ FILE
@@ -166,6 +168,10 @@ public class EfficiencyTest {
       // TESTS ARE DONE, WRITE OUTPUT TO FILE
       String outString = String.format("%3d. %10d  %10.3f %10.3f %10.3f \n",
          counter, size, isTime, msTime, qsTime);
+
+      //String outString = String.format("%d,%.3f,%.3f,%.3f\r\n",
+      //    size, isTime, msTime, qsTime);
+
       this._output_msgr.write(outString);
       this._output_msgr.write(
           "-----------------------------------------------------\n");

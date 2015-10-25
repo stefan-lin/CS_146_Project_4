@@ -180,5 +180,15 @@ public class WordCount {
   public static void main(String[] args) throws IOException {
     WordCount wc = new WordCount();
     wc._parse_cmd_args(args);
+
+    System.out.println("Executing Sorting Algorithm Efficiency Tests...");
+    try {
+      Thread.sleep(3000);
+      EfficiencyTest et = new EfficiencyTest();
+      et.run_test();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
   }
 }

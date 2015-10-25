@@ -1,10 +1,11 @@
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Stack;
 
 public class QuickSort<E> implements SortInterface<E>{
   //variables
-  //private E [] tmp_Arr = null;
+  final private int STACK_LIMIT_SIZE = 90000;
   Comparison_Handler<E> cmph = null;
   InsertionSort<E> _insertion_sort = null;
 
@@ -42,6 +43,29 @@ public class QuickSort<E> implements SortInterface<E>{
       return;
     } // END ELSE STATEMENT
   } // END _quicksort PRIVATE METHOD
+
+  private void _quicksortIterative(E[] tmp_Arr, int fnt, int bck){
+    Stack<Integer> stack = new Stack<>();
+    // PUSH FRONT AND BACK INTO STACK
+    stack.push(fnt);
+    stack.push(bck);
+
+    while(!stack.isEmpty()){
+      int high = stack.pop();
+      int low  = stack.pop();
+
+      int pivot = chop(tmp_Arr, low, high);
+
+      if(pivot - low > 1){
+        stack.push(low);
+        stack.push(pivot);
+      } // END IF STATEMENT
+      if(high - (pivot+1) > 0){
+        stack.push(pivot+1);
+        stack.push(high);
+      } // END IF STATEMENT
+    } // END WHILE LOOP
+  } // END _quicksortIterative METHOD
 
   /**
    * _find_median METHOD
@@ -154,8 +178,12 @@ public class QuickSort<E> implements SortInterface<E>{
       this.cmph = cmph;
 
       // CAN HAVE A TRY-CATCH BLOCK HERE
-      this._quicksort(arr, 0, arr.length - 1);
-
+      if(arr.length > STACK_LIMIT_SIZE) {
+        this._quicksortIterative(arr, 0, arr.length - 1);
+      }
+      else{
+        this._quicksort(arr, 0, arr.length - 1);
+      }
       this.cmph = null;
     } // END IF-ELSE STATEMENT
   } // END sort METHOD

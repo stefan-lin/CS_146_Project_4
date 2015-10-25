@@ -70,7 +70,7 @@ public class HashTable<E extends Comparable<E>> implements DataCounter<E> {
     }
   }
 
-  final private int DEFAULT_SIZE_OF_TABLE  = 104729;
+  final private int DEFAULT_SIZE_OF_TABLE  = 505097; //104729;
   private int                   _table_size         = 0;
   private LinkedNode[]          _table              = null;
   private ArrayList<LinkedNode> _cheat_sheet        = null;
